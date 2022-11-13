@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  LiveTextPlayground
+//  LiTeX
 //
 //  Created by MacBook Pro M1 on 2022/11/12.
 //
@@ -13,10 +13,10 @@ import VisionKit
 @main
 struct LiveTextPlayground: AsyncParsableCommand {
     static var configuration: CommandConfiguration = CommandConfiguration(
-        commandName: "livetext",
-        abstract: "",
+        commandName: "litex",
+        abstract: "Command line tool of Live Text",
         discussion: """
-        
+        LiTeX allows use Live Text as the command line tool and output results to a text file.
         """,
         version: "1.0.0",
         shouldDisplay: true
