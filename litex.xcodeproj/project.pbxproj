@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE68ABB5291F4FD1005BB9AC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68ABB4291F4FD1005BB9AC /* main.swift */; };
+		CE68ABB5291F4FD1005BB9AC /* LiveTextCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68ABB4291F4FD1005BB9AC /* LiveTextCLI.swift */; };
+		CEC86FB32920E38F00412B80 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = CEC86FB22920E38F00412B80 /* ArgumentParser */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CE68ABB1291F4FD1005BB9AC /* LiveTextPlayground */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LiveTextPlayground; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE68ABB4291F4FD1005BB9AC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CE68ABB1291F4FD1005BB9AC /* litex */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = litex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE68ABB4291F4FD1005BB9AC /* LiveTextCLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextCLI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC86FB32920E38F00412B80 /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,33 +43,41 @@
 		CE68ABA8291F4FD1005BB9AC = {
 			isa = PBXGroup;
 			children = (
-				CE68ABB3291F4FD1005BB9AC /* LiveTextPlayground */,
+				CE68ABB3291F4FD1005BB9AC /* LiTeX */,
 				CE68ABB2291F4FD1005BB9AC /* Products */,
+				CEC86FB12920E38F00412B80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		CE68ABB2291F4FD1005BB9AC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE68ABB1291F4FD1005BB9AC /* LiveTextPlayground */,
+				CE68ABB1291F4FD1005BB9AC /* litex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE68ABB3291F4FD1005BB9AC /* LiveTextPlayground */ = {
+		CE68ABB3291F4FD1005BB9AC /* LiTeX */ = {
 			isa = PBXGroup;
 			children = (
-				CE68ABB4291F4FD1005BB9AC /* main.swift */,
+				CE68ABB4291F4FD1005BB9AC /* LiveTextCLI.swift */,
 			);
-			path = LiveTextPlayground;
+			path = LiTeX;
+			sourceTree = "<group>";
+		};
+		CEC86FB12920E38F00412B80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE68ABB0291F4FD1005BB9AC /* LiveTextPlayground */ = {
+		CE68ABB0291F4FD1005BB9AC /* litex */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE68ABB8291F4FD1005BB9AC /* Build configuration list for PBXNativeTarget "LiveTextPlayground" */;
+			buildConfigurationList = CE68ABB8291F4FD1005BB9AC /* Build configuration list for PBXNativeTarget "litex" */;
 			buildPhases = (
 				CE68ABAD291F4FD1005BB9AC /* Sources */,
 				CE68ABAE291F4FD1005BB9AC /* Frameworks */,
@@ -77,9 +87,12 @@
 			);
 			dependencies = (
 			);
-			name = LiveTextPlayground;
+			name = litex;
+			packageProductDependencies = (
+				CEC86FB22920E38F00412B80 /* ArgumentParser */,
+			);
 			productName = LiveTextPlayground;
-			productReference = CE68ABB1291F4FD1005BB9AC /* LiveTextPlayground */;
+			productReference = CE68ABB1291F4FD1005BB9AC /* litex */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +110,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CE68ABAC291F4FD1005BB9AC /* Build configuration list for PBXProject "LiveTextPlayground" */;
+			buildConfigurationList = CE68ABAC291F4FD1005BB9AC /* Build configuration list for PBXProject "litex" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -106,11 +119,14 @@
 				Base,
 			);
 			mainGroup = CE68ABA8291F4FD1005BB9AC;
+			packageReferences = (
+				CEBCA96A2920E1EA000C53DA /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			productRefGroup = CE68ABB2291F4FD1005BB9AC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE68ABB0291F4FD1005BB9AC /* LiveTextPlayground */,
+				CE68ABB0291F4FD1005BB9AC /* litex */,
 			);
 		};
 /* End PBXProject section */
@@ -120,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE68ABB5291F4FD1005BB9AC /* main.swift in Sources */,
+				CE68ABB5291F4FD1005BB9AC /* LiveTextCLI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +193,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -231,7 +247,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -246,6 +262,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WHBF4Z49B6;
 				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -257,6 +274,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WHBF4Z49B6;
 				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -265,7 +283,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE68ABAC291F4FD1005BB9AC /* Build configuration list for PBXProject "LiveTextPlayground" */ = {
+		CE68ABAC291F4FD1005BB9AC /* Build configuration list for PBXProject "litex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE68ABB6291F4FD1005BB9AC /* Debug */,
@@ -274,7 +292,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE68ABB8291F4FD1005BB9AC /* Build configuration list for PBXNativeTarget "LiveTextPlayground" */ = {
+		CE68ABB8291F4FD1005BB9AC /* Build configuration list for PBXNativeTarget "litex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE68ABB9291F4FD1005BB9AC /* Debug */,
@@ -284,6 +302,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEBCA96A2920E1EA000C53DA /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEC86FB22920E38F00412B80 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEBCA96A2920E1EA000C53DA /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE68ABA9291F4FD1005BB9AC /* Project object */;
 }
