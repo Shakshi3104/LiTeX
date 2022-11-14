@@ -26,6 +26,7 @@
 /* Begin PBXFileReference section */
 		CE68ABB1291F4FD1005BB9AC /* litex */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = litex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE68ABB4291F4FD1005BB9AC /* LiveTextCLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextCLI.swift; sourceTree = "<group>"; };
+		CE95759A29222E0900E47D13 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CEDF16032921159600693286 /* litex_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = litex_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,6 +45,7 @@
 		CE68ABA8291F4FD1005BB9AC = {
 			isa = PBXGroup;
 			children = (
+				CE95759A29222E0900E47D13 /* README.md */,
 				CEDF16022921158000693286 /* materials */,
 				CE68ABB3291F4FD1005BB9AC /* LiTeX */,
 				CE68ABB2291F4FD1005BB9AC /* Products */,
