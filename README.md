@@ -4,7 +4,7 @@
     <img src="materials/litex_icon.png" width=64>
 </p>
 
-**LiTeX** allows use [Live Text](https://support.apple.com/en-us/HT212630) as the command line tool and outputs results to a text file.
+**LiTeX** allows use [Live Text](https://support.apple.com/en-us/HT212630) as the command line tool and output results to a text file.
 
 LiTeX requires **macOS 13** (using [ImageAnalyzer of VisionKit](https://developer.apple.com/documentation/visionkit/imageanalyzer))
 

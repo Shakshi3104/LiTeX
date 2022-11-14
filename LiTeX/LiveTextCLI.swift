@@ -16,7 +16,7 @@ struct Litex: AsyncParsableCommand {
         commandName: "litex",
         abstract: "Command line tool of Live Text",
         discussion: """
-        LiTeX allows use Live Text as the command line tool and outputs results to a text file.
+        LiTeX allows use Live Text as the command line tool and output results to a text file.
         """,
         version: "1.0.0",
         shouldDisplay: true
