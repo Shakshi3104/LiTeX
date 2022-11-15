@@ -9,6 +9,7 @@ import Foundation
 import ArgumentParser
 import Cocoa
 import VisionKit
+import Vision
 
 @main
 struct Litex: AsyncParsableCommand {
@@ -26,8 +27,21 @@ struct Litex: AsyncParsableCommand {
     var imagefilePath: String
 }
 
+
+// MARK: - Text recognition
 extension Litex {
     func run() async throws {
+        if #available(macOS 13.0, *) {
+            try? await recognizeTextByLiveText()
+        } else {
+            // Fallback on earlier versions
+            recognizeTextByVision()
+        }
+    }
+    
+    // MARK: - recognize text via ImageAnalyzer (Live Text)
+    @available(macOS 13, *)
+    func recognizeTextByLiveText() async throws {
         #if DEBUG
         print("⚙️ Live Text Supported: \(ImageAnalyzer.isSupported)")
         print("⚙️ Supported Languages: \(ImageAnalyzer.supportedTextRecognitionLanguages)")
@@ -67,6 +81,50 @@ extension Litex {
             } else {
                 print("Text is not included in the image.")
             }
+        }
+    }
+    
+    // MARK: - recognize text via VNRecognizeTextRequest (Vision)
+    func recognizeTextByVision() {
+        // convert image filepath string to URL
+        let imageURL = URL(fileURLWithPath: imagefilePath)
+        
+        let nsImage = NSImage(contentsOf: imageURL)
+        guard let cgImage = nsImage?.cgImage else { return }
+        
+        // setup request
+        let requestHandler = VNImageRequestHandler(cgImage: cgImage)
+        let request = VNRecognizeTextRequest(completionHandler: { request, error in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else {
+                return
+            }
+            
+            let recognizedStrings = observations.compactMap { observation in
+                return observation.topCandidates(1).first?.string
+            }
+            
+            // output to the text file
+            let recognizedText = recognizedStrings.joined(separator: "\n")
+            print(recognizedText)
+            
+            let outputFilename = imageURL.deletingPathExtension().lastPathComponent + "_text.txt"
+            let outputFilepath = imageURL.deletingLastPathComponent().appendingPathComponent(outputFilename)
+            
+            try? recognizedText.write(to: outputFilepath, atomically: true, encoding: .utf8)
+        })
+        
+        // perform
+        do {
+            #if DEBUG
+            let supportedLanguages = try request.supportedRecognitionLanguages()
+            print("⚙️ Supported Languages: \(supportedLanguages)")
+            let recognitionLanguages = request.recognitionLanguages
+            print("⚙️ Recognized Languages: \(recognitionLanguages)")
+            #endif
+            
+            try requestHandler.perform([request])
+        } catch {
+            print("Unable to perform the request: \(error).")
         }
     }
 }
