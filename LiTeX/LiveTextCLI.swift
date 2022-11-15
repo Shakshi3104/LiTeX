@@ -24,7 +24,10 @@ struct Litex: AsyncParsableCommand {
         )
     
     @Argument(help: "An image filepath.")
-    var imagefilePath: String
+    var imageFilepath: String
+    
+    @Flag(help: "Use VNRecognizeTextRequest of Vision. This option is only available on macOS 13 and newer.")
+    var useVision: Bool = false
 }
 
 
@@ -32,7 +35,13 @@ struct Litex: AsyncParsableCommand {
 extension Litex {
     func run() async throws {
         if #available(macOS 13.0, *) {
-            try? await recognizeTextByLiveText()
+            if useVision {
+                // recognize by Vision
+                recognizeTextByVision()
+            } else {
+                // recognize by Live Text
+                try? await recognizeTextByLiveText()
+            }
         } else {
             // Fallback on earlier versions
             recognizeTextByVision()
@@ -54,7 +63,7 @@ extension Litex {
         }
         
         // convert image filepath string to URL
-        let imageURL = URL(filePath: imagefilePath)
+        let imageURL = URL(filePath: imageFilepath)
         
         // setup ImageAnalyzer
         var configuration = ImageAnalyzer.Configuration([.text])
@@ -90,7 +99,7 @@ extension Litex {
     // MARK: - recognize text via VNRecognizeTextRequest (Vision)
     func recognizeTextByVision() {
         // convert image filepath string to URL
-        let imageURL = URL(fileURLWithPath: imagefilePath)
+        let imageURL = URL(fileURLWithPath: imageFilepath)
         
         let nsImage = NSImage(contentsOf: imageURL)
         guard let cgImage = nsImage?.cgImage else { return }
