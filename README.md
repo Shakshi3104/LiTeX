@@ -6,7 +6,8 @@
 
 **LiTeX** allows use [Live Text](https://support.apple.com/en-us/HT212630) as the command line tool and output results to a text file.
 
-LiTeX requires **macOS 13** (using [ImageAnalyzer of VisionKit](https://developer.apple.com/documentation/visionkit/imageanalyzer))
+LiTeX requires **macOS 13** to use Live Text (using [ImageAnalyzer of VisionKit](https://developer.apple.com/documentation/visionkit/imageanalyzer)).
+On macOS 12, LiTeX uses [VNRecognizeTextRequest of Vision](https://developer.apple.com/documentation/vision/vnrecognizetextrequest).
 
 <p align="center">
     <img src="materials/litex_demo.gif" width=1024>
@@ -15,12 +16,14 @@ LiTeX requires **macOS 13** (using [ImageAnalyzer of VisionKit](https://develope
 ## Usage
 
 ```sh
-USAGE: litex <imagefile-path>
+USAGE: litex <image-filepath> [--use-vision]
 
 ARGUMENTS:
-  <imagefile-path>        An image filepath.
+  <image-filepath>        An image filepath.
 
 OPTIONS:
+  --use-vision            Use VNRecognizeTextRequest of Vision. This option is only
+                          available on macOS 13.
   --version               Show the version.
   -h, --help              Show help information.
 ```
@@ -34,7 +37,7 @@ OPTIONS:
 
 ## Requirements
 
-- macOS 13.0+
+- macOS 12.0+
 - Xcode 14.1+
 
 ## Swift Package Dependencies
