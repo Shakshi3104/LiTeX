@@ -19,7 +19,7 @@ struct Litex: AsyncParsableCommand {
         discussion: """
         LiTeX allows use Live Text as the command line tool and output results to a text file.
         """,
-        version: "1.0.0",
+        version: "1.1.0",
         shouldDisplay: true
         )
     
