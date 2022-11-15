@@ -57,7 +57,8 @@ extension Litex {
         let imageURL = URL(filePath: imagefilePath)
         
         // setup ImageAnalyzer
-        let configuration = ImageAnalyzer.Configuration([.text])
+        var configuration = ImageAnalyzer.Configuration([.text])
+        configuration.locales = ["ja-JP", "en-US"]
         let analyzer = ImageAnalyzer()
         
         // analyze the image
@@ -119,6 +120,7 @@ extension Litex {
         
         // perform
         do {
+            request.recognitionLanguages = ["ja-JP", "en-US"]
             #if DEBUG
             let supportedLanguages = try request.supportedRecognitionLanguages()
             print("⚙️ Supported Languages: \(supportedLanguages)")
