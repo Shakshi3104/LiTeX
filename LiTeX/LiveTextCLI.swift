@@ -73,11 +73,13 @@ extension Litex {
             if analysis.hasResults(for: .text) {
                 print(analysis.transcript)
                 
+                #if RELEASE
                 // output to the text file
                 let outputFilename = imageURL.deletingPathExtension().lastPathComponent + "_text.txt"
                 let outputFilepath = imageURL.deletingLastPathComponent().appending(path: outputFilename)
                 
                 try? analysis.transcript.write(to: outputFilepath, atomically: true, encoding: .utf8)
+                #endif
             } else {
                 print("Text is not included in the image.")
             }
@@ -107,10 +109,12 @@ extension Litex {
             let recognizedText = recognizedStrings.joined(separator: "\n")
             print(recognizedText)
             
+            #if RELEASE
             let outputFilename = imageURL.deletingPathExtension().lastPathComponent + "_text.txt"
             let outputFilepath = imageURL.deletingLastPathComponent().appendingPathComponent(outputFilename)
             
             try? recognizedText.write(to: outputFilepath, atomically: true, encoding: .utf8)
+            #endif
         })
         
         // perform
