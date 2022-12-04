@@ -16,14 +16,22 @@ On macOS 12, LiTeX uses [VNRecognizeTextRequest of Vision](https://developer.app
 ## Usage
 
 ```sh
-USAGE: litex <image-filepath> [--use-vision]
+OVERVIEW: Command line tool of Live Text
+
+LiTeX allows use Live Text as the command line tool and output results to a text file.
+
+USAGE: litex [<image-filepath>] [--use-vision] [--lang <lang>] [--support-lang]
 
 ARGUMENTS:
   <image-filepath>        An image filepath.
 
 OPTIONS:
   --use-vision            Use VNRecognizeTextRequest of Vision. This option is only
-                          available on macOS 13.
+                          available on macOS 13 and newer.
+  --lang <lang>           Set recognition language. If you want to check supported
+                          languages, run `litex --support-lang`. This option is for
+                          VNRecognizeTextRequest. (default: ja-JP)
+  --support-lang          Show supported languages.
   --version               Show the version.
   -h, --help              Show help information.
 ```

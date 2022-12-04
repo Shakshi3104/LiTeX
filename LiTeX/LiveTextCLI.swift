@@ -19,21 +19,45 @@ struct Litex: AsyncParsableCommand {
         discussion: """
         LiTeX allows use Live Text as the command line tool and output results to a text file.
         """,
-        version: "1.1.0",
+        version: "1.2.0",
         shouldDisplay: true
         )
     
     @Argument(help: "An image filepath.")
-    var imageFilepath: String
+    var imageFilepath: String?
     
     @Flag(help: "Use VNRecognizeTextRequest of Vision. This option is only available on macOS 13 and newer.")
     var useVision: Bool = false
+    
+    @Option(help: "Set recognition language. If you want to check supported languages, run `litex --support-lang`. This option is for VNRecognizeTextRequest.")
+    var lang: String = "ja-JP"
+    
+    @Flag(help: "Show supported languages.")
+    var supportLang: Bool = false
 }
 
 
 // MARK: - Text recognition
 extension Litex {
     func run() async throws {
+        if supportLang {
+            // show supported languages by VNRecognizeTextRequest
+            let request = VNRecognizeTextRequest(completionHandler: { request, error in
+            })
+            
+            do {
+                let supportedLanguages = try request.supportedRecognitionLanguages()
+                print(supportedLanguages.joined(separator: "\n"))
+            } catch {
+                print("Unable to perform the request: \(error).")
+            }
+        } else {
+            // recognize
+            try? await recognize()
+        }
+    }
+    
+    func recognize() async throws {
         if #available(macOS 13.0, *) {
             if useVision {
                 // recognize by Vision
@@ -62,12 +86,17 @@ extension Litex {
             return
         }
         
+        guard let imageFilepath = imageFilepath else {
+            print("Error: Missing expected argument '<image-filepath>'")
+            return
+        }
+        
         // convert image filepath string to URL
         let imageURL = URL(filePath: imageFilepath)
         
         // setup ImageAnalyzer
         var configuration = ImageAnalyzer.Configuration([.text])
-        configuration.locales = ["ja-JP", "en-US"]
+        configuration.locales = [lang]
         let analyzer = ImageAnalyzer()
         
         // analyze the image
@@ -98,6 +127,11 @@ extension Litex {
     
     // MARK: - recognize text via VNRecognizeTextRequest (Vision)
     func recognizeTextByVision() {
+        guard let imageFilepath = imageFilepath else {
+            print("Error: Missing expected argument '<image-filepath>'")
+            return
+        }
+        
         // convert image filepath string to URL
         let imageURL = URL(fileURLWithPath: imageFilepath)
         
@@ -129,7 +163,7 @@ extension Litex {
         
         // perform
         do {
-            request.recognitionLanguages = ["ja-JP", "en-US"]
+            request.recognitionLanguages = [lang]
             #if DEBUG
             let supportedLanguages = try request.supportedRecognitionLanguages()
             print("⚙️ Supported Languages: \(supportedLanguages)")
